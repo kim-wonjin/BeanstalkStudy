@@ -3,18 +3,17 @@ name: BeanstalkStudy
 on:
   push:
     branches:
-      - main # (1).브랜치 이름
-  workflow_dispatch: (2).수동 실행
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest # (3).OS환경
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3 # (4).코드 check out
+        uses: actions/checkout@v3
 
-      #JDK Setting
       - name: Set up JDK 11
         uses: actions/setup-java@v3
         with:
@@ -24,11 +23,11 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
-        shell: bash # (6).권한 부여
+        shell: bash
 
       - name: Build with Gradle
         run: ./gradlew clean build
-        shell: bash # (7).build 시작
+        shell: bash
 
       - name: Get current time
         uses: 1466587594/get-current-time@v2
@@ -39,4 +38,4 @@ jobs:
 
       - name: Show Current Time
         run: echo "CurrentTime=$"
-        shell: bash # (9).확보한 시간 보여주기
+        shell: bash
